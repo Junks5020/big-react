@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+# 运行 ESLint 检查并自动修复
+pnpm run lint:fix
+
+# 运行 Prettier 格式化（而不是检查）
+pnpm run format
+
+# 添加格式化后的文件到暂存区
+git add .
