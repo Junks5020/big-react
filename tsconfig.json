@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "lib": ["dom", "dom.iterable", "es6"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "shared/*": ["packages/shared/*"],
+      "react/*": ["packages/react/*"],
+      "hostConfig": ["packages/react-reconciler/src/hostConfig"]
+    }
+  },
+  "include": ["packages/**/*"],
+  "exclude": ["node_modules"]
+}
