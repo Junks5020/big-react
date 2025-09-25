@@ -17,6 +17,9 @@ export class FiberNode {
 
   pendingPorps: Props;
   memoizedProps: Props | null;
+  memoizedState: any;
+  updateQueue: unknown;
+
   alternate: FiberNode | null;
   flags: Flags;
 
@@ -44,16 +47,53 @@ export class FiberNode {
     this.index = 0;
 
     //作为工作单元
+    this.updateQueue = null;
 
     //pendingProps 是当前fiber节点的pendingProps，pendingProps是当前fiber节点的props，但是还没有被应用到真实dom节点上
     this.pendingPorps = pendingProps;
     this.memoizedProps = null;
+    this.memoizedState = null;
 
     this.alternate = null;
     this.flags = NoFlags;
   }
 }
 
-export class FIberRootNode {
+export class FiberRootNode {
   container: Container;
+  current: FiberNode;
+  finishedWork: FiberNode | null;
+
+  constructor(container: Container, hostRootFiber: FiberNode) {
+    this.container = container;
+    this.current = hostRootFiber;
+    hostRootFiber.stateNode = this;
+    this.finishedWork = null;
+  }
 }
+
+export const createWorkInProgress = (
+  current: FiberNode,
+  pendingPorps: Props
+): FiberNode => {
+  let wip = current.alternate;
+
+  if (wip === null) {
+    //mount
+    wip = new FiberNode(current.tag, pendingPorps, current.key);
+    wip.stateNode = current.stateNode;
+
+    wip.alternate = current;
+    current.alternate = wip;
+  } else {
+    //update
+    wip.pendingPorps = pendingPorps;
+    wip.flags = NoFlags;
+  }
+  wip.type = current.type;
+  wip.updateQueue = current.updateQueue;
+  wip.child = current.child;
+  wip.memoizedState = current.memoizedState;
+  wip.memoizedProps = current.memoizedProps;
+  return wip;
+};

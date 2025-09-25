@@ -1,15 +1,34 @@
 import { beginWork } from './beginWork';
 import { completeWork } from './completeWork';
-import { FiberNode } from './fiber';
+import { createWorkInProgress, FiberNode, FiberRootNode } from './fiber';
+import { HostRoot } from './workTags';
 
 let workInProgress: FiberNode | null = null;
 
-function prepareFreshStack(fiber: FiberNode) {
-  workInProgress = fiber;
+function prepareFreshStack(root: FiberRootNode) {
+  workInProgress = createWorkInProgress(root.current, {});
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function renderRoot(root: FiberNode) {
+export function schedultUpdateOnFiber(fiber: FiberNode) {
+  //调度功能
+  const root = markUpdateFromFiberToRoot(fiber);
+  renderRoot(root);
+}
+
+function markUpdateFromFiberToRoot(fiber: FiberNode) {
+  let node = fiber;
+  let parent = fiber.return;
+  while (parent !== null) {
+    node = parent;
+    parent = node.return;
+  }
+  if (node.tag === HostRoot) {
+    return node.stateNode;
+  }
+  return null;
+}
+
+function renderRoot(root: FiberRootNode) {
   //初始化，
   prepareFreshStack(root);
   //递归流程
@@ -40,6 +59,7 @@ function performUnitOfWork(fiber: FiberNode) {
     workInProgress = next;
   }
 }
+
 function completeUnitOfWork(fiber: FiberNode) {
   let node: FiberNode = fiber;
   do {
