@@ -3,6 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import ts from 'rollup-plugin-typescript2';
 import cjs from '@rollup/plugin-commonjs';
+import replace from '@rollup/plugin-replace';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -28,6 +29,9 @@ export function getPackageJSON(pakName) {
 }
 
 //获取所有基础的plugins
-export function getBasePlugins({ typescript = {} } = {}) {
-  return [cjs(), ts(typescript)];
+export function getBasePlugins({
+  alias = { __DEV__: true },
+  typescript = {},
+} = {}) {
+  return [replace(alias), cjs(), ts(typescript)];
 }

@@ -40,9 +40,9 @@ flowchart TD
     X -->|否| T
     X -->|是| Y["渲染完成"]
 
-    style A fill:#e1f5fe
-    style F fill:#e1f5fe
-    style Y fill:#c8e6c9
+    style A fill:#e1f5fe,color:#000000
+    style F fill:#e1f5fe,color:#000000
+    style Y fill:#c8e6c9,color:#000000
 ```
 
 ### 1.2 函数调用时序图
@@ -128,8 +128,8 @@ flowchart TD
     P --> K
     Q --> B
 
-    style A fill:#e3f2fd
-    style D fill:#c8e6c9
+    style A fill:#e3f2fd,color:#000000
+    style D fill:#c8e6c9,color:#000000
     style Q fill:#ffcdd2
 ```
 
@@ -150,9 +150,9 @@ flowchart TD
     G --> I["开始归阶段处理"]
     I --> J["处理兄弟节点或父节点"]
 
-    style A fill:#e8f5e8
-    style H fill:#fff3e0
-    style J fill:#f3e5f5
+    style A fill:#e8f5e8,color:#000000
+    style H fill:#fff3e0,color:#000000
+    style J fill:#f3e5f5,color:#000000
 ```
 
 ## 3. 双缓冲机制流程图
@@ -186,9 +186,9 @@ flowchart TD
     R --> S["wip.memoizedProps = current.memoizedProps"]
     S --> T["返回 workInProgress 节点"]
 
-    style D fill:#e1f5fe
-    style E fill:#f3e5f5
-    style T fill:#c8e6c9
+    style D fill:#e1f5fe,color:#000000
+    style E fill:#f3e5f5,color:#000000
+    style T fill:#c8e6c9,color:#000000
 ```
 
 ### 3.2 双缓冲树切换机制
@@ -255,8 +255,8 @@ flowchart TD
     N --> O
     J --> O
 
-    style A fill:#e3f2fd
-    style O fill:#c8e6c9
+    style A fill:#e3f2fd,color:#000000
+    style O fill:#c8e6c9,color:#000000
 ```
 
 ### 4.2 Update 对象结构图
@@ -315,10 +315,10 @@ flowchart TD
     N --> P["当前节点: parent"]
     P --> I
 
-    style A fill:#e3f2fd
-    style O fill:#c8e6c9
-    style F fill:#fff3e0
-    style H fill:#f3e5f5
+    style A fill:#e3f2fd,color:#000000
+    style O fill:#c8e6c9,color:#000000
+    style F fill:#fff3e0,color:#000000
+    style H fill:#f3e5f5,color:#000000
 ```
 
 ### 5.2 Fiber 节点关系图
@@ -343,11 +343,11 @@ flowchart TD
         E -->|return| B
     end
 
-    style A fill:#e3f2fd
-    style B fill:#fff3e0
-    style C fill:#fff3e0
-    style D fill:#fff3e0
-    style E fill:#f3e5f5
+    style A fill:#e3f2fd,color:#000000
+    style B fill:#fff3e0,color:#000000
+    style C fill:#fff3e0,color:#000000
+    style D fill:#fff3e0,color:#000000
+    style E fill:#f3e5f5,color:#000000
 ```
 
 ## 6. 错误处理和恢复流程
@@ -377,7 +377,7 @@ flowchart TD
     style G fill:#ffcdd2
     style H fill:#ffcdd2
     style I fill:#ffcdd2
-    style M fill:#c8e6c9
+    style M fill:#c8e6c9,color:#000000
 ```
 
 ## 7. 总结
